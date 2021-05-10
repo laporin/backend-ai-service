@@ -1,4 +1,4 @@
-name: flask-api
+name: backend-ai-service
 
 on: [push]
 
