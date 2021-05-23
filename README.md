@@ -1,6 +1,8 @@
-# Backend AI Service
+# Laporin Backend AI Service
 
-Google Bangkit Capstone Project B21-CAP0330
+> Google Bangkit Capstone Project B21-CAP0330
+
+This backend is used to serve machine learning functionality.
 
 ## Installing Project Dependencies
 
