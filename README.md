@@ -4,20 +4,21 @@
 
 This backend is used to serve machine learning functionality.
 
-## Installing Project Dependencies
+## Dependencies
 
-[This project uses Pipenv for virtual environment management.](https://pipenv.readthedocs.io/)
-
-Run the following command to install the dependencies on your local computer:
-
+1. Pipenv
 `pipenv install`
 
 ## Running the application
 
-After you have performed all the dependency installations from above, you can run the following command on your terminal to start this app.
+1. Use Pipenv shell `pipenv shell`.
+2. Install packages `pipenv install --dev`.
+3. Run the app `flask run`.
+4. Open app in `localhost:5000`.
 
-From the root of this project enter the following terminal command:
+## Use the app
 
-```
-flask run
-```
+> GET /api/text-similarity
+> data: { "detail": "Some text" }
+
+## Enjoy
