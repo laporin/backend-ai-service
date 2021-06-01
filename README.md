@@ -18,7 +18,7 @@ This backend is used to serve machine learning functionality.
 
 ## Use the app
 
-> GET /api/text-similarity
+> POST /api/text-similarity
 > data: { "detail": "Some text" }
 
 ## Enjoy
