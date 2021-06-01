@@ -1,5 +1,6 @@
 import os
 
+import requests
 from flask import Flask, request, jsonify
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import euclidean_distances
@@ -15,6 +16,40 @@ def create_app(test_config=None):
 
     @app.route('/api/text-similarity', methods=['POST'])
     def text_similarity():
+        sentence = request.json['detail']
+
+        response = requests.get('http://127.0.0.1:8000/api/reports/all')
+        reports = response.json()['data']
+        sentences = [report['detail'] for report in reports]
+
+        sentences.insert(0, sentence)
+
+        vectorizer = CountVectorizer()
+        features = vectorizer.fit_transform(sentences).todense()
+
+        similar_reports = []
+
+        for index in range(len(features)):
+            feature = features[index]
+            sentence = sentences[index]
+            distance = euclidean_distances(features[0], feature)[0][0]
+            print(f'{index} - {distance} - {sentence}')
+
+            for report in reports:
+                if (report['detail'] == sentence):
+                    report['distance'] = distance
+
+        reports.sort(key=lambda report: report['distance'])  # sort by distance
+        reports = reports[:3]  # take first third element
+
+        print('---------------')
+        print(reports)
+        print([report['distance'] for report in reports])
+
+        return jsonify({'data': reports})
+
+    @app.route('/api/cat-similarity', methods=['POST'])
+    def cat_similarity():
         sentence = request.json['detail']
 
         sentences = [
