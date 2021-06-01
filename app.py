@@ -18,7 +18,7 @@ def create_app(test_config=None):
     def text_similarity():
         sentence = request.json['detail']
 
-        response = requests.get('http://127.0.0.1:8000/api/reports/all')
+        response = requests.get('https://laporin.arifikhsanudin.my.id/api/reports/all')
         reports = response.json()['data']
         sentences = [report['detail'] for report in reports]
 
